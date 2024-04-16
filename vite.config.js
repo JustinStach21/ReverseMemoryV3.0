@@ -1,3 +1,7 @@
+module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "/ReverseMemoryV3.0/" : "/",
+};
+
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
