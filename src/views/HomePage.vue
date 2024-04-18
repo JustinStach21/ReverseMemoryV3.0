@@ -2,7 +2,6 @@
     <div>
         <nav>
             <router-link v-bind:to="{name: 'GamePage'}">Game</router-link>
-            <h1>{{ query }}</h1>
         </nav>
         
     </div>
