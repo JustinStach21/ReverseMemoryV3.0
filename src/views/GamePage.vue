@@ -1,9 +1,6 @@
 <template>
     <body>
         <div>
-            <nav>
-                <router-link v-bind:to="{name: 'HomePage'}">Home</router-link>
-            </nav>
             <Button id="play" v-on:click="play">Play</Button>
         </div>
         <div id="Score-Display">
@@ -68,7 +65,7 @@ export default {
                 const color_display = document.getElementById('color_display');
                 color_display.innerText = colorsArray[index]
                 console.log(colorsArray[index]);
-            }, 1000);
+            }, 500);
         },
 
 
@@ -125,6 +122,8 @@ export default {
     }
     
 }
+
+console.log("Gamepage.vue run confirmed");
 
 </script>
 

@@ -8,4 +8,4 @@ const app = createApp(App);
 app.use(router);
 app.mount('#app');
 
-console.log("main.js run");
+console.log("main.js run confirmed");
