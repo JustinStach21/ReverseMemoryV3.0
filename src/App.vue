@@ -2,7 +2,7 @@
     <body>
         <div>
             <router-view />
-            <button type="button" v-on:click="moveToHomePage()">Play</button>
+            <button type="button" v-on:click="moveToHomePage()" v-if="playClicked">Play</button>
         </div>
 
     </body>
@@ -11,10 +11,16 @@
 <script>
 
 export default {
+    data(){
+        return{
+            playClicked: true,
+        };
+    },
     methods:{
         moveToHomePage(){
-            this.$router.push({name: 'HomePage'});
-        }
+            this.playClicked = false;
+            this.$router.push({name: 'UserLogin'});
+        },
     }
 
 }

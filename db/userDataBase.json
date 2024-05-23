@@ -1,14 +1,10 @@
 {
   "userDataBase": [
     {
-      "id": 1,
+      "id": 719,
       "username": "Justin",
-      "password": "123"
-    },
-    {
-      "id": 2,
-      "username": "Larry",
-      "password": "5432"
+      "password": "123",
+      "highScore": 0
     }
   ]
 }

@@ -1,36 +1,36 @@
 <template>
-    <div>
+  <div>
         <nav>
             <router-link v-bind:to="{name: 'GamePage'}">Game</router-link>
-            <router-link v-bind:to="{name: 'CreateNewUser'}">Sign Up</router-link>
+            <router-link v-bind:to="{name: 'UserLogin'}">Logout</router-link>
         </nav>
         <div>
-          <label>Username</label><input type="text" id="username">
-          <label>Password</label><input type="text" id="password">
-          <button id="LoginInButton">Login In</button>
+          <h1>{{ currentUsername }}</h1>
         </div>
+
         
     </div>
 </template>
 
 <script>
-import UserDatabaseService from '../services/UserDatabaseService';
 
+import { userId } from '../components/UserLogin.vue';
+import { activeUsername } from '../components/UserLogin.vue';
 
 export default {
-    data(){
-      return{
-        users: []
-      }
-    },
-    methods: {
-      listUsers(){
-        UserDatabaseService.list().then(response => {
-          this.users = response.data;
-        })
-      }
-    }
+  data(){
+    return{
+      currentUser: userId,
+      currentUsername: activeUsername
 
+    }
+  },
+  computed:{
+
+  },
+  methods: {
+
+  }
 }
 
 console.log("Homeview.vue run confirmed");

@@ -24,7 +24,8 @@ export default {
       document: {
         id: Math.floor(Math.random() * (1000 - 100) + 100),
         username: " ",
-        password: " "
+        password: " ",
+        highScore: 0
       }
     };
   },
@@ -34,7 +35,7 @@ export default {
         .create(this.document)
         .then(response => {
           if (response.status === 201) {
-            this.$router.push({name: 'HomePage'});
+            this.$router.push({name: 'UserLogin'});
           }
         })
         .catch(error => {
@@ -42,7 +43,7 @@ export default {
         });
     },
     cancel() {
-      this.$router.push({name: 'HomePage'});
+      this.$router.push({name: 'UserLogin'});
     }
   }
 };

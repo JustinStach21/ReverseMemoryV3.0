@@ -2,6 +2,7 @@
     <body>
         <div>
             <Button id="play" v-on:click="play">Play</Button>
+            <button type="button" v-on:click="moveToHomePage()">Exit</button>
         </div>
         <div id="Score-Display">
             <h1 type="text" id="display" class="Game-Score">{{ display }}</h1>
@@ -19,6 +20,9 @@
 
 <script>
 
+import { userId } from '../components/UserLogin.vue';
+import UserDatabaseService from '../services/UserDatabaseService';
+
 export default {
     data(){
         return{
@@ -26,7 +30,8 @@ export default {
             colorsArray: [],
             colorClicked: "null",
             colorsArrayIntervel: 0,
-            randomNumber: 0
+            randomNumber: 0,
+            intervalTime: 500
         }
     },
     methods: {
@@ -49,23 +54,32 @@ export default {
         colorsArray.push("green");
         }
         console.log(colorsArray);
-        colorsArray.push(' ');
         },
         
         printNextColor(colorsArray) {
             let index = 0;
+            let displayNextColor = false;
             const color_display = document.getElementById('color_display');
             color_display.innerText = colorsArray[index]
+            console.log(this.intervalTime)
             const interval = setInterval(function () {
-                if (++index === colorsArray.length) {
+                if(displayNextColor == true){
+                    displayNextColor = false
+                    if (++index === colorsArray.length) {
                     clearInterval(interval);
                     return;
-                }
+                    }
 
-                const color_display = document.getElementById('color_display');
-                color_display.innerText = colorsArray[index]
-                console.log(colorsArray[index]);
-            }, 500);
+                    const color_display = document.getElementById('color_display');
+                    color_display.innerText = colorsArray[index]
+                    console.log(color_display)
+                }else {
+                    displayNextColor = true
+                    const color_display = document.getElementById('color_display');
+                    color_display.innerText = ' '
+
+                }
+            }, this.intervalTime);
         },
 
 
@@ -73,9 +87,9 @@ export default {
         if(colorClicked == colorsArray[colorsArrayIntervel]){
             if(this.colorsArrayIntervel == 0){
                 this.addScore();
-                this.colorsArrayIntervel = colorsArray.length - 2;
+                this.colorsArrayIntervel = colorsArray.length - 1;
             }else{
-                this.colorsArrayIntervel -= 2;
+                this.colorsArrayIntervel -= 1;
             }
         }else{
             this.incorrect();
@@ -110,6 +124,7 @@ export default {
         incorrect(){
         const color_display = document.getElementById('color_display');
         color_display.innerText = 'Game Over Final Score: ' + this.display;
+        this.updateHighScore();
         this.clear();
         this.colorsArray = [];
         this.colorsArrayIntervel = 0;
@@ -118,7 +133,40 @@ export default {
 
         clear() {
         this.display = 0;
+        },
+
+        //non game methods
+
+        moveToHomePage(){
+            this.$router.push({name: 'HomePage'});
+        },
+        
+        updateHighScore(){
+            let currentUser = UserDatabaseService.get(userId);
+            console.log(currentUser)
+            if(this.display > currentUser.highScore){
+                const user = {
+                    id: currentUser.id,
+                    username: currentUser.username,
+                    password: currentUser.password,
+                    highScore: this.display
+                    }
+                console.log(UserDatabaseService.get(userId));
+                user.highScore = this.display;
+                console.log(user);
+                UserDatabaseService
+                .update(user.id, user)
+                .then(response => {
+                if (response.status === 200) {
+                    this.$router.push({name: 'HomeView'});
+                }
+                })
+                .catch(error => {
+                console.error(error);
+                });
+                }
         }
+        
     }
     
 }
