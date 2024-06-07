@@ -1,0 +1,86 @@
+{
+  "userDataBase": [
+    {
+      "id": 719,
+      "username": "Justin",
+      "password": "123",
+      "highScore": 8,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 7499,
+      "username": "Larry",
+      "password": "5432",
+      "highScore": 7,
+      "fourColorsPicked": [
+        2,
+        3,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 9606,
+      "username": " Autumn",
+      "password": "123",
+      "highScore": 0,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 1960,
+      "username": "BobbyJo",
+      "password": "SoWhat",
+      "highScore": 12,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 2967,
+      "username": "Testing",
+      "password": "1",
+      "highScore": 0,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "itemDataBase": [
+    {
+      "id": 1,
+      "src": "https://htmlcolorcodes.com/assets/images/colors/red-color-solid-background-1920x1080.png",
+      "itemName": "red"
+    },
+    {
+      "id": 2,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx7scTiQwMHYOUll06G0EgfWFEpFu7jDzyhw&s",
+      "itemName": "yellow"
+    },
+    {
+      "id": 3,
+      "src": "https://www.solidbackgrounds.com/images/1920x1080/1920x1080-blue-solid-color-background.jpg",
+      "itemName": "blue"
+    },
+    {
+      "id": 4,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh56hpDQUZA3UlKtxYFH5YfBuwon3qjhLNqw&s",
+      "itemName": "green"
+    }
+  ]
+}

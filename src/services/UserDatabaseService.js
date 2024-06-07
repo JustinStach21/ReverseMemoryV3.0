@@ -1,29 +1,29 @@
 import axios from 'axios';
 
 const http = axios.create({
-  baseURL: 'https://justinstach21.github.io/ReverseMemoryDataBase/'
+  baseURL: 'http://localhost:3000'
 });
 
 export default {
 
   list() {
-    return http.get('/userDataBase.json');
+    return http.get('/userDataBase');
   },
 
   get(id) {
-    return http.get(`/userDataBase.json/${id}`)
+    return http.get(`/userDataBase/${id}`)
   },
 
   create(user) {
-    return http.post(`/userDataBase.json`, user);
+    return http.post(`/userDataBase`, user);
   },
 
   update(id, user) {
-    return http.put(`/userDataBase.json/${id}`, user);
+    return http.put(`/userDataBase/${id}`, user);
   },
 
   delete(id) {
-    return http.delete(`/userDataBase.json/${id}`);
+    return http.delete(`/userDataBase/${id}`);
   }
 
 }

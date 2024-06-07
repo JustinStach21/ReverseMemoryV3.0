@@ -22,10 +22,11 @@ export default {
   data() {
     return {
       document: {
-        id: Math.floor(Math.random() * (1000 - 100) + 100),
+        id: Math.floor(Math.random() * (10000 - 1000) + 1000),
         username: " ",
         password: " ",
-        highScore: 0
+        highScore: 0,
+        fourColorsPicked: [1, 2, 3, 4]
       }
     };
   },

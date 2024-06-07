@@ -2,9 +2,9 @@
     <body>
         <div>
             <router-view />
-            <button type="button" v-on:click="moveToHomePage()" v-if="playClicked">Play</button>
+            <button id="mainPlayButton" type="button" v-on:click="moveToHomePage()" v-if="playClicked">Play</button>
         </div>
-
+        
     </body>
 </template>
 
@@ -31,5 +31,18 @@ console.log("App.vue run confirmed");
 
 <style>
 
+#mainPlayButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+
+    padding: 20px 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
 
 </style>

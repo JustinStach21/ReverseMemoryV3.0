@@ -3,20 +3,26 @@
       <h1>loading</h1>
     </div>
     <div v-else>
-        <div>
+        <div id="main-Div">
+          <div id="userInteractionFields">
             <div class="field">
-            <label for="name">Username</label>
-            <input id="name" name="name" type="text" v-model="document.username" />
+            <label for="name">Username </label>
+            <input id="name" name="name" type="text" v-model="document.username"/>
             </div>
             <div class="field">
-            <label for="author">Password</label>
-            <input id="author" name="author" type="text" v-model="document.password" />
+            <label for="author">Password </label>
+            <input id="author" name="author" type="text" v-model="document.password"/>
             </div>
-            <button type="submit" v-on:click="userLogin()">Login</button>
+          </div>
+          <div id="userInteractionButtons">
+            <button id="userLoginButton" type="submit" v-on:click="userLogin()">Login</button>
+            <button id="guestLoginButton" v-on:click="guestLogin()">Guest Login</button>
+            <button id="userSignUpButton" v-on:click="signUp()">Sign Up</button>
+          </div>
         </div>
     <table>
       <tbody>
-        <tr v-for="user in sortedDocs" v-bind:key="user.id">
+        <tr v-for="user in sortedUsers" v-bind:key="user.id">
           <td class="name">{{ user.username }}</td>
           <td> {{ user.password }} </td>
           <td> {{ user.highScore }} </td>
@@ -69,7 +75,7 @@
       };
     },
     computed: {
-      sortedDocs() {
+      sortedUsers() {
         return this.users
       }
     },
@@ -78,9 +84,11 @@
         UserDatabaseService.list().then(response => {
           this.isLoading = false;
           this.users = response.data;
+          console.log(this.users)
         });
       },
       userLogin(){
+        console.log("login clicked");
         for(let i = 0; i < this.users.length; i++){
             if(this.document.username === this.users[i].username && this.document.password === this.users[i].password){
                 console.log("log in successful")
@@ -91,6 +99,17 @@
                 break;
             }
         }
+      },
+      guestLogin(){
+        console.log("Guest Login CLicked")
+        console.log("log in successful")
+        setCurrentUserId(0)
+        setCurrentUsername("Guest")
+        this.$router.push({name: 'HomePage'});
+      },
+      signUp(){
+        this.$router.push({name: 'CreateNewUser'});
+
       },
       deleteUser(id) {
         this.isLoading = true;
@@ -119,6 +138,65 @@
   </script>
   
   <style scoped>
+  #main-Div{
+    border: 3px solid red;
+    margin-top: 5%;
+  }
+
+  #userInteractionFields{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 3px solid green;
+  }
+
+  .field{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+  }
+
+  #userInteractionButtons{
+    border: 3px solid green;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+
+  }
+
+  #userLoginButton{
+    margin-left: 30%;
+    width: 20%;
+    padding: 20px 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 150%;
+  }
+
+  #guestLoginButton{
+    width: 20%;
+    padding: 20px 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 150%;
+  }
+
+  #userSignUpButton{
+    margin-left: 40%;
+    width: 20%;
+    padding: 20px 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 150%;
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;

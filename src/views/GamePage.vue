@@ -1,7 +1,7 @@
 <template>
     <body>
         <div>
-            <Button id="play" v-on:click="play">Play</Button>
+            <Button id="play" v-on:click="startgame">Play</Button>
             <button type="button" v-on:click="moveToHomePage()">Exit</button>
         </div>
         <div id="Score-Display">
@@ -9,10 +9,10 @@
             <h1 id="color_display"> </h1>
         </div>
         <div id="color_squares">
-            <button type="button" class="color" value="red" id="red" v-on:click="redClicked(this.colorClicked)"></button>
-            <button type="button" class="color" value="yellow" id="yellow" v-on:click="yellowClicked(this.colorClicked)"></button>
-            <button type="button" class="color" value="blue" id="blue" v-on:click="blueClicked(this.colorClicked)"></button>
-            <button type="button" class="color" value="green" id="green" v-on:click="greenClicked(this.colorClicked)"></button>
+            <img id="Option1" src="" class="color" v-on:click="Option1Clicked(this.colorClicked)">
+            <img id="Option2" src="" class="color" v-on:click="Option2Clicked(this.colorClicked)">
+            <img id="Option3" src="" class="color" v-on:click="Option3Clicked(this.colorClicked)">
+            <img id="Option4" src="" class="color" v-on:click="Option4Clicked(this.colorClicked)">
         </div>
 
     </body>
@@ -22,19 +22,29 @@
 
 import { userId } from '../components/UserLogin.vue';
 import UserDatabaseService from '../services/UserDatabaseService';
+import ItemDatabaseService from '../services/itemsDatabaseService';
 
 export default {
     data(){
         return{
+            gameLoading: true,
             display: 0,
             colorsArray: [],
             colorClicked: "null",
             colorsArrayIntervel: 0,
             randomNumber: 0,
-            intervalTime: 500
+            intervalTime: 500,
+            currentUser: {
+
+            },
         }
     },
     methods: {
+
+        //game methods
+        startgame(){
+            this.setOptions()
+        },
         play(){
         this.addToColorsArray(this.colorsArray, this.randomNumber)
         this.printNextColor(this.colorsArray);
@@ -45,13 +55,17 @@ export default {
         randomNumber = Math.random() * 4;
         console.log(randomNumber);
         if(randomNumber <= 1){
-        colorsArray.push("red");
+        let Option1 = document.getElementById("Option1")
+        colorsArray.push(Option1.name);
         }else if(randomNumber >= 1 && randomNumber <= 2){
-        colorsArray.push("yellow");
+        let Option2 = document.getElementById("Option2")
+        colorsArray.push(Option2.name);
         }else if(randomNumber >= 2 && randomNumber <= 3){
-        colorsArray.push("blue");
+        let Option3 = document.getElementById("Option3")
+        colorsArray.push(Option3.name);;
         }else if(randomNumber >= 3 && randomNumber <= 4){
-        colorsArray.push("green");
+        let Option4 = document.getElementById("Option4")
+        colorsArray.push(Option4.name);
         }
         console.log(colorsArray);
         },
@@ -96,23 +110,27 @@ export default {
         }
         },
 
-        redClicked(colorClicked){
-        colorClicked = 'red'
+        Option1Clicked(colorClicked){
+        let Option1 = document.getElementById("Option1")
+        colorClicked = Option1.name
         this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
         },
 
-        yellowClicked(colorClicked){
-        colorClicked = 'yellow'
+        Option2Clicked(colorClicked){
+        let Option2 = document.getElementById("Option2")
+        colorClicked = Option2.name
         this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
         },
 
-        blueClicked(colorClicked){
-        colorClicked = 'blue'
+        Option3Clicked(colorClicked){
+        let Option3 = document.getElementById("Option3")
+        colorClicked = Option3.name
         this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
         },
 
-        greenClicked(colorClicked){
-        colorClicked = 'green'
+        Option4Clicked(colorClicked){
+        let Option4 = document.getElementById("Option4")
+        colorClicked = Option4.name
         this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
         },
 
@@ -141,30 +159,80 @@ export default {
             this.$router.push({name: 'HomePage'});
         },
         
-        updateHighScore(){
-            let currentUser = UserDatabaseService.get(userId);
-            console.log(currentUser)
-            if(this.display > currentUser.highScore){
-                const user = {
-                    id: currentUser.id,
-                    username: currentUser.username,
-                    password: currentUser.password,
-                    highScore: this.display
+        updateHighScore(currentUser){
+            let currentScore = this.display
+            console.log(this.display)
+            UserDatabaseService.get(userId).then(response => {
+                currentUser = response.data;
+                console.log(currentUser)
+                console.log(currentUser.highScore)
+                if(currentScore > currentUser.highScore && userId != 0){
+                    console.log("Current Score is higher than high score")
+                    const updatedUser = {
+                        id: userId,
+                        username: currentUser.username,
+                        password: currentUser.password,
+                        highScore: currentScore,
+                        fourColorsPicked: currentUser.fourColorsPicked
                     }
-                console.log(UserDatabaseService.get(userId));
-                user.highScore = this.display;
-                console.log(user);
-                UserDatabaseService
-                .update(user.id, user)
-                .then(response => {
-                if (response.status === 200) {
-                    this.$router.push({name: 'HomeView'});
-                }
+                    console.log(updatedUser)
+                    this.updateUser(updatedUser);
+                    
+                 }
+           })
+        },
+
+        updateUser(updatedUser){
+            console.log(updatedUser)
+                    UserDatabaseService.update(updatedUser.id, updatedUser).then(response => {
+                    if (response.status === 200) {
+                        console.log("updated user")
+                    }
+                    })
+                    .catch(error => {
+                    console.error(error);
+                    });
+        },
+
+        //game setup methods
+
+        setOptions(){
+            UserDatabaseService.get(userId).then(response => {
+                let currentUser = response.data
+                console.log(currentUser)
+                let colorsNeeded = currentUser.fourColorsPicked
+                console.log(colorsNeeded)
+                let itemsNeeded = []
+                ItemDatabaseService.list().then(response => {
+                    let items = response.data
+                    console.log(items)
+                    for(let colorIteration = 0; colorIteration <= colorsNeeded.length; colorIteration++){
+                        for(let itemIteration = 0; itemIteration < items.length; itemIteration++){
+                            if(colorsNeeded[colorIteration] == items[itemIteration].id){
+                                itemsNeeded.push(items[itemIteration])
+                            }
+                        }
+                    }
+                    console.log(itemsNeeded)
+                    var image = document.getElementById("Option1")
+                    image.src = itemsNeeded[0].src
+                    image.setAttribute('name', itemsNeeded[0].itemName)
+                    console.log(image)
+                    var image2 = document.getElementById("Option2")
+                    image2.src = itemsNeeded[1].src
+                    image2.setAttribute('name', itemsNeeded[1].itemName)
+                    console.log(image2)
+                    var image3 = document.getElementById("Option3")
+                    image3.src = itemsNeeded[2].src
+                    image3.setAttribute('name', itemsNeeded[2].itemName)
+                    console.log(image3)
+                    var image4 = document.getElementById("Option4")
+                    image4.src = itemsNeeded[3].src
+                    image4.setAttribute('name', itemsNeeded[3].itemName)
+                    console.log(image4)
+                    this.play()
                 })
-                .catch(error => {
-                console.error(error);
-                });
-                }
+            })
         }
         
     }
@@ -206,29 +274,22 @@ console.log("Gamepage.vue run confirmed");
     color: black;
 }
 
-#red{
-    background-color: red;
+#Option1{
     height: 200px;
     width: 225px;
     border-radius: 25px;
 }
-
-#yellow{
-    background-color: yellow;
+#Option2{
     height: 200px;
     width: 225px;
     border-radius: 25px;
 }
-
-#blue{
-    background-color: blue;
+#Option3{
     height: 200px;
     width: 225px;
     border-radius: 25px;
 }
-
-#green{
-    background-color: green;
+#Option4{
     height: 200px;
     width: 225px;
     border-radius: 25px;
