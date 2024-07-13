@@ -2,6 +2,12 @@
     <body>
 
         <h2>Assortments of colors and objects component</h2>
+        <div id="current selection">
+            
+        </div>
+        <div id="selection options">
+
+        </div>
 
 
     </body>
@@ -16,9 +22,7 @@ import itemsDatabaseService from '../services/itemsDatabaseService';
 export default {
     data(){
         return{
-            currentUsersValues: [
-
-            ]
+            currentUsersValues: UserDatabaseService.get(userId).data
         }
     },
     methods: {
@@ -31,7 +35,8 @@ export default {
                 console.log(this.currentUsersValues)
             })
         },
-        updateHighScore(currentUser){
+        updateUsersColorSelection(currentUser){
+            let currentFourColorsPicked = []
             UserDatabaseService.get(userId).then(response => {
                 currentUser = response.data;
                 console.log(currentUser)
@@ -40,7 +45,8 @@ export default {
                     id: userId,
                     username: currentUser.username,
                     password: currentUser.password,
-                    highScore: currentScore
+                    highScore: currentUser.highScore,
+                    fourColorsPicked: currentFourColorsPicked
                 }
                 console.log(updatedUser)
                 this.updateUser(updatedUser);

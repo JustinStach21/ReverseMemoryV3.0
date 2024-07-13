@@ -4,12 +4,22 @@
       "id": 719,
       "username": "Justin",
       "password": "123",
-      "highScore": 8,
+      "highScore": 10,
       "fourColorsPicked": [
         1,
         2,
         3,
         4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
       ]
     },
     {
@@ -18,22 +28,20 @@
       "password": "5432",
       "highScore": 7,
       "fourColorsPicked": [
-        2,
-        3,
-        1,
-        1
-      ]
-    },
-    {
-      "id": 9606,
-      "username": " Autumn",
-      "password": "123",
-      "highScore": 0,
-      "fourColorsPicked": [
         1,
         2,
         3,
         4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
       ]
     },
     {
@@ -46,18 +54,82 @@
         2,
         3,
         4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
       ]
     },
     {
-      "id": 2967,
-      "username": "Testing",
-      "password": "1",
+      "id": 9506,
+      "username": "Connor",
+      "password": "231",
       "highScore": 0,
       "fourColorsPicked": [
         1,
         2,
         3,
         4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 7656,
+      "username": "Des",
+      "password": "456",
+      "highScore": 2,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "id": 4241,
+      "username": "Autumn",
+      "password": "Boathouse123",
+      "highScore": 5,
+      "fourColorsPicked": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "eightColorsPicked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
       ]
     }
   ],
@@ -65,22 +137,98 @@
     {
       "id": 1,
       "src": "https://htmlcolorcodes.com/assets/images/colors/red-color-solid-background-1920x1080.png",
-      "itemName": "red"
+      "itemName": "red",
+      "groupName": "colors"
     },
     {
       "id": 2,
       "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx7scTiQwMHYOUll06G0EgfWFEpFu7jDzyhw&s",
-      "itemName": "yellow"
+      "itemName": "yellow",
+      "groupName": "colors"
     },
     {
       "id": 3,
       "src": "https://www.solidbackgrounds.com/images/1920x1080/1920x1080-blue-solid-color-background.jpg",
-      "itemName": "blue"
+      "itemName": "blue",
+      "groupName": "colors"
     },
     {
       "id": 4,
       "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh56hpDQUZA3UlKtxYFH5YfBuwon3qjhLNqw&s",
-      "itemName": "green"
+      "itemName": "green",
+      "groupName": "colors"
+    },
+    {
+      "id": 5,
+      "src": "https://garden.spoonflower.com/c/2736960/p/f/m/xiMUydilMWT-uxve8hRfOyg8Nhra8jjphbLJLq9clhyi-imK0R8ZQQ/Navy%20Blue%20Solid%20.jpg",
+      "itemName": "navy",
+      "groupName": "colors"
+    },
+    {
+      "id": 6,
+      "src": "https://img.freepik.com/free-photo/abstract-luxury-gold-yellow-gradient-studio-wall-well-use-as-background-layout-banner-product-presentation_1258-82962.jpg",
+      "itemName": "orange",
+      "groupName": "colors"
+    },
+    {
+      "id": 7,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3-h3zyJIeF6DOWmZfEd4aMf96XyyB4p1iQg&s",
+      "itemName": "teal",
+      "groupName": "colors"
+    },
+    {
+      "id": 8,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAIgLHmv4kiGHcSyO1-j9yaGMEi-SVBne7sA&s",
+      "itemName": "black",
+      "groupName": "colors"
+    },
+    {
+      "id": 9,
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/1200px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png",
+      "itemName": "USA",
+      "groupName": "countries"
+    },
+    {
+      "id": 10,
+      "src": "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png",
+      "itemName": "Germany",
+      "groupName": "countries"
+    },
+    {
+      "id": 11,
+      "src": "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/383px-Flag_of_India.svg.png",
+      "itemName": "India",
+      "groupName": "countries"
+    },
+    {
+      "id": 12,
+      "src": "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/300px-Flag_of_Spain.svg.png",
+      "itemName": "Spain",
+      "groupName": "countries"
+    },
+    {
+      "id": 13,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrsgCKofsl3Hpn58fU92ZFH9PifLklamFIAw&s",
+      "itemName": "Strawberry",
+      "groupName": "fruits"
+    },
+    {
+      "id": 14,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmtdahJ5RH9f17C_raO47b_R5W1r7nETkcwg&s",
+      "itemName": "Water Mellon",
+      "groupName": "fruits"
+    },
+    {
+      "id": 15,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVQeMXd_ivSXg9TprS75197v4NkDSMy1qXqQ&s",
+      "itemName": "Apple",
+      "groupName": "fruits"
+    },
+    {
+      "id": 16,
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZBJCj_MgLSipQIK-s4_591X3IzQHZykqrQ&s",
+      "itemName": "Cherry",
+      "groupName": "fruits"
     }
   ]
 }

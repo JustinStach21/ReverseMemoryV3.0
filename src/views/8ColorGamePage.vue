@@ -8,11 +8,15 @@
             <h1 type="text" id="display" class="Game-Score">{{ display }}</h1>
             <h1 id="color_display"> </h1>
         </div>
-        <div id="color_squares">
+        <div id="eight_color_squares">
             <img id="Option1" src="" class="color" v-on:click="Option1Clicked(this.colorClicked)">
             <img id="Option2" src="" class="color" v-on:click="Option2Clicked(this.colorClicked)">
             <img id="Option3" src="" class="color" v-on:click="Option3Clicked(this.colorClicked)">
             <img id="Option4" src="" class="color" v-on:click="Option4Clicked(this.colorClicked)">
+            <img id="Option5" src="" class="color" v-on:click="Option5Clicked(this.colorClicked)">
+            <img id="Option6" src="" class="color" v-on:click="Option6Clicked(this.colorClicked)">
+            <img id="Option7" src="" class="color" v-on:click="Option7Clicked(this.colorClicked)">
+            <img id="Option8" src="" class="color" v-on:click="Option8Clicked(this.colorClicked)">
         </div>
 
     </body>
@@ -33,7 +37,6 @@ export default {
             colorClicked: "null",
             colorsArrayIntervel: 0,
             randomNumber: 0,
-            intervalTime: 500,
             currentUser: {
 
             },
@@ -49,7 +52,7 @@ export default {
         },
 
         addToColorsArray(colorsArray, randomNumber){
-        randomNumber = Math.random() * 4;
+        randomNumber = Math.random() * 8;
         console.log(randomNumber);
         if(randomNumber <= 1){
         let Option1 = document.getElementById("Option1")
@@ -63,6 +66,18 @@ export default {
         }else if(randomNumber >= 3 && randomNumber <= 4){
         let Option4 = document.getElementById("Option4")
         colorsArray.push(Option4.name);
+        }else if(randomNumber >= 4 && randomNumber <= 5){
+        let Option5 = document.getElementById("Option5")
+        colorsArray.push(Option5.name);
+        }else if(randomNumber >= 5 && randomNumber <= 6){
+        let Option6 = document.getElementById("Option6")
+        colorsArray.push(Option6.name);
+        }else if(randomNumber >= 6 && randomNumber <= 7){
+        let Option7 = document.getElementById("Option7")
+        colorsArray.push(Option7.name);
+        }else if(randomNumber >= 7 && randomNumber <= 8){
+        let Option8 = document.getElementById("Option8")
+        colorsArray.push(Option8.name);
         }
         console.log(colorsArray);
         },
@@ -78,13 +93,13 @@ export default {
                     }
                     const color_display = document.getElementById('color_display');
                     color_display.innerText = colorsArray[index];
-                    await this.sleep(500);
+                    await this.sleep(250);
                     console.log(index);
                 }else {
                     displayNextColor = true
                     const color_display = document.getElementById('color_display');
                     color_display.innerText = ' '
-                    await this.sleep(250);
+                    await this.sleep(200);
                     console.log(index);
 
                 }
@@ -161,6 +176,30 @@ export default {
         this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
         },
 
+        Option5Clicked(colorClicked){
+        let Option4 = document.getElementById("Option5")
+        colorClicked = Option4.name
+        this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
+        },
+
+        Option6Clicked(colorClicked){
+        let Option4 = document.getElementById("Option6")
+        colorClicked = Option4.name
+        this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
+        },
+
+        Option7Clicked(colorClicked){
+        let Option4 = document.getElementById("Option7")
+        colorClicked = Option4.name
+        this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
+        },
+
+        Option8Clicked(colorClicked){
+        let Option4 = document.getElementById("Option8")
+        colorClicked = Option4.name
+        this.isColorCorrect(colorClicked, this.colorsArrayIntervel, this.colorsArray);
+        },
+
         addScore() {
         this.display += 1;
         this.play();
@@ -228,7 +267,7 @@ export default {
             UserDatabaseService.get(userId).then(response => {
                 let currentUser = response.data
                 console.log(currentUser)
-                let colorsNeeded = currentUser.fourColorsPicked
+                let colorsNeeded = currentUser.eightColorsPicked
                 console.log(colorsNeeded)
                 let itemsNeeded = []
                 ItemDatabaseService.list().then(response => {
@@ -258,6 +297,22 @@ export default {
                     image4.src = itemsNeeded[3].src
                     image4.setAttribute('name', itemsNeeded[3].itemName)
                     console.log(image4)
+                    var image5 = document.getElementById("Option5")
+                    image5.src = itemsNeeded[4].src
+                    image5.setAttribute('name', itemsNeeded[4].itemName)
+                    console.log(image5)
+                    var image6 = document.getElementById("Option6")
+                    image6.src = itemsNeeded[5].src
+                    image6.setAttribute('name', itemsNeeded[5].itemName)
+                    console.log(image6)
+                    var image7 = document.getElementById("Option7")
+                    image7.src = itemsNeeded[6].src
+                    image7.setAttribute('name', itemsNeeded[6].itemName)
+                    console.log(image7)
+                    var image8 = document.getElementById("Option8")
+                    image8.src = itemsNeeded[7].src
+                    image8.setAttribute('name', itemsNeeded[7].itemName)
+                    console.log(image8)
                 })
             })
         }
@@ -275,9 +330,9 @@ console.log("Gamepage.vue run confirmed");
 
 <style>
 
-#color_squares{
+#eight_color_squares{
     display: grid;
-    grid-template-columns: 225px 225px;
+    grid-template-columns: 225px 225px 225px 225px;
     row-gap: 20px;
     column-gap: 20px;
     justify-content: center;
@@ -320,6 +375,26 @@ console.log("Gamepage.vue run confirmed");
     border-radius: 25px;
 }
 #Option4{
+    height: 200px;
+    width: 225px;
+    border-radius: 25px;
+}
+#Option5{
+    height: 200px;
+    width: 225px;
+    border-radius: 25px;
+}
+#Option6{
+    height: 200px;
+    width: 225px;
+    border-radius: 25px;
+}
+#Option7{
+    height: 200px;
+    width: 225px;
+    border-radius: 25px;
+}
+#Option8{
     height: 200px;
     width: 225px;
     border-radius: 25px;

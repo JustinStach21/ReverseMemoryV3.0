@@ -2,11 +2,11 @@
     <form v-on:submit.prevent>
         <div class="field">
         <label for="name">Username</label>
-        <input id="name" name="name" type="text" v-model="document.username" />
+        <input id="name" name="name" type="text" v-model="document.username" value=""/>
         </div>
         <div class="field">
         <label for="author">Password</label>
-        <input id="author" name="author" type="text" v-model="document.password" />
+        <input id="author" name="author" type="text" v-model="document.password" value=""/>
         </div>
         <div class="actions">
         <button type="button" v-on:click="cancel()">Cancel</button>&nbsp;
@@ -26,7 +26,8 @@ export default {
         username: " ",
         password: " ",
         highScore: 0,
-        fourColorsPicked: [1, 2, 3, 4]
+        fourColorsPicked: [1, 2, 3, 4],
+        eightColorsPicked: [1, 2, 3, 4, 5, 6, 7, 8]
       }
     };
   },
@@ -51,32 +52,13 @@ export default {
 </script>
 
 <style scoped>
-form {
-  padding: 20px;
-  font-size: 16px;
-  width: 500px;
-}
-form * {
-  box-sizing: border-box;
-  line-height: 1.5;
-}
-.field {
-  display: flex;
-  flex-direction: column;
-}
-.field label {
-  margin: 4px 0;
-  font-weight: bold;
-}
-.field input,
-.field textarea {
-  padding: 8px;
-}
-.field textarea {
-  height: 300px;
-}
-.actions {
-  text-align: right;
-  padding: 10px 0;
-}
+  label{
+      display: flex;
+  }
+
+  .field{
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 150%;
+  }
 </style>

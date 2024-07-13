@@ -6,12 +6,12 @@
         <div id="main-Div">
           <div id="userInteractionFields">
             <div class="field">
-            <label for="name">Username </label>
-            <input id="name" name="name" type="text" v-model="document.username"/>
+              <label for="name">Username </label>
+              <input id="name" name="name" type="text" v-model="document.username" value=""/>
             </div>
             <div class="field">
-            <label for="author">Password </label>
-            <input id="author" name="author" type="text" v-model="document.password"/>
+              <label for="author">Password </label>
+              <input id="author" name="author" type="text" v-model="document.password" value=""/>
             </div>
           </div>
           <div id="userInteractionButtons">
@@ -20,18 +20,6 @@
             <button id="userSignUpButton" v-on:click="signUp()">Sign Up</button>
           </div>
         </div>
-    <table>
-      <tbody>
-        <tr v-for="user in sortedUsers" v-bind:key="user.id">
-          <td class="name">{{ user.username }}</td>
-          <td> {{ user.password }} </td>
-          <td> {{ user.highScore }} </td>
-          <td>
-            <button v-on:click="deleteUser(user.id)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
     </div>
   </template>
   
@@ -111,24 +99,6 @@
         this.$router.push({name: 'CreateNewUser'});
 
       },
-      deleteUser(id) {
-        this.isLoading = true;
-        UserDatabaseService.delete(id)
-          .then(response => {
-            this.isLoading = false;
-            if (response.status === 200) {
-              this.getUsers();
-            }
-          })
-          .catch(error => {
-            this.loading = false;
-            if (error.response.status === 404) {
-              this.$router.push({ name: 'NotFoundView' });
-            } else {
-              console.error(error);
-            }
-          });
-      },
     },
     created() {
       this.getUsers();
@@ -139,7 +109,6 @@
   
   <style scoped>
   #main-Div{
-    border: 3px solid red;
     margin-top: 5%;
   }
 
@@ -148,20 +117,21 @@
     justify-content: center;
     align-items: center;
     height: 200px;
-    border: 3px solid green;
   }
 
   .field{
+    margin: 2%;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 150%;
+    font-size: 235%;
+    text-align: center;
   }
 
   #userInteractionButtons{
-    border: 3px solid green;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
+    gap: 10px;
 
   }
 
@@ -177,6 +147,7 @@
   }
 
   #guestLoginButton{
+    margin: 10px;
     width: 20%;
     padding: 20px 30px;
     border: 2px solid black;
@@ -197,46 +168,9 @@
     font-size: 150%;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
+  label{
+    display: flex;
   }
-  
-  th {
-    font-family: "Work Sans", sans-serif;
-    font-weight: 500;
-    text-align: left;
-  }
-  
-  tr {
-    margin: 20px;
-    padding: 10px;
-  }
-  
-  td {
-    padding: 8px;
-    font-family: "Work Sans", sans-serif;
-  }
-  
-  td.name {
-    font-weight: 400;
-  }
-  
-  .docs-icon img {
-    height: 32px;
-  }
-  
-  .avatar {
-    border-radius: 20px;
-    width: 32px;
-    vertical-align: middle;
-    padding-right: 5px;
-  }
-  
-  .ownedby {
-    vertical-align: middle;
-  }
+
   </style>
   

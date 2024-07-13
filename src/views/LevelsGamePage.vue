@@ -97,33 +97,6 @@ export default {
 
         //await this.sleep(2000);
 
-        // Old print color function
-        // printNextColor(colorsArray) {
-        //     let index = 0;
-        //     let displayNextColor = false;
-        //     const color_display = document.getElementById('color_display');
-        //     color_display.innerText = colorsArray[index]
-        //     console.log(this.intervalTime)
-        //     const interval = setInterval(function () {
-        //         if(displayNextColor == true){
-        //             displayNextColor = false
-        //             if (++index === colorsArray.length) {
-        //             clearInterval(interval);
-        //             return;
-        //             }
-
-        //             const color_display = document.getElementById('color_display');
-        //             color_display.innerText = colorsArray[index]
-        //             console.log(color_display)
-        //         }else {
-        //             displayNextColor = true
-        //             const color_display = document.getElementById('color_display');
-        //             color_display.innerText = ' '
-
-        //         }
-        //     }, this.intervalTime);
-        // },
-
         isColorCorrect(colorClicked, colorsArrayIntervel, colorsArray){
         if(colorClicked == colorsArray[colorsArrayIntervel]){
             if(this.colorsArrayIntervel == 0){
